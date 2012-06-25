@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Lab_3___Invaders
 {
@@ -195,11 +196,11 @@ namespace Lab_3___Invaders
             if (currentGameFrame > 6)
                 currentGameFrame = 1;
         }
-        
+
         private void returnFire()
         {
             //// invaders check their location and fire at the player
-            if (invaderShots.Count == (wave + 1))
+            if (invaderShots.Count == wave)
                 return;
             if (random.Next(10) < (10 - wave))
                 return;
@@ -209,25 +210,24 @@ namespace Lab_3___Invaders
                 group invader by invader.Location.X into columns
                 select columns;
 
-            foreach (var invaderColumn in invaderColumns)
-            {
-                {
-                    var invaderRow =
-                    from invader in invaderColumn
-                    orderby invader.Location.Y descending
-                    select invader;
-                    Invader shooter = invaderRow.First();
-                    Point newShotLocation = new Point
-                        (shooter.Location.X + (shooter.Area.Width / 2),
-                    shooter.Location.Y + shooter.Area.Height);
+            int randomColumnNumber = random.Next(invaderColumns.Count());
+            var randomColumn = invaderColumns.ElementAt(randomColumnNumber);
 
-                    Shot newShot = new Shot(newShotLocation, Direction.Down,
-                    formArea);
-                    invaderShots.Add(newShot);
-                }
-            }
+            var invaderRow =
+            from invader in randomColumn
+            orderby invader.Location.Y descending
+            select invader;
 
+            Invader shooter = invaderRow.First();
+            Point newShotLocation = new Point
+                (shooter.Location.X + (shooter.Area.Width / 2),
+            shooter.Location.Y + shooter.Area.Height);
+
+            Shot newShot = new Shot(newShotLocation, Direction.Down,
+            formArea);
+            invaderShots.Add(newShot);
         }
+
 
         private void checkForCollisions()
         {
@@ -257,6 +257,7 @@ namespace Lab_3___Invaders
                     if (invader.Area.Contains(shot.Location))
                     {
                         deadInvaders.Add(invader);
+                        deadInvaderShots.Add(shot);
                         // Score multiplier based on wave
                         score = score + (1 * wave);
                     }
