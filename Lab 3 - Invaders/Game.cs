@@ -31,6 +31,9 @@ namespace Lab_3___Invaders
         private PointF scoreLocation;
         private PointF livesLocation;
         private PointF waveLocation;
+
+        Font messageFont = new Font(FontFamily.GenericMonospace, 50, FontStyle.Bold);
+        Font statsFont = new Font(FontFamily.GenericMonospace, 15);
         
         public Game(Random random, Rectangle formArea)
         {
@@ -38,7 +41,7 @@ namespace Lab_3___Invaders
             this.random = random;
             stars = new Stars(random, formArea);
             scoreLocation = new PointF((formArea.Left + 5.0F), (formArea.Top + 5.0F));
-            livesLocation = new PointF((formArea.Right - 50.0F), (formArea.Top + 5.0F));
+            livesLocation = new PointF((formArea.Right - 120.0F), (formArea.Top + 5.0F));
             waveLocation = new PointF((formArea.Left + 5.0F), (formArea.Top + 25.0F));
             playerShip = new PlayerShip(formArea, 
                 new Point((formArea.Width / 2), (formArea.Height - 50)));
@@ -65,15 +68,15 @@ namespace Lab_3___Invaders
                 shot.Draw(graphics);
 
             graphics.DrawString(("Score: " + score.ToString()), 
-                SystemFonts.DefaultFont, Brushes.Yellow, scoreLocation);
-            graphics.DrawString(("Lives: " + livesLeft.ToString()), 
-                SystemFonts.DefaultFont, Brushes.Yellow, livesLocation);
+                statsFont, Brushes.Yellow, scoreLocation);
+            graphics.DrawString(("Lives: " + livesLeft.ToString()),
+                statsFont, Brushes.Yellow, livesLocation);
             graphics.DrawString(("Wave: " + wave.ToString()),
-                SystemFonts.DefaultFont, Brushes.Yellow, waveLocation);
+                statsFont, Brushes.Yellow, waveLocation);
             if (gameOver)
             {
-                graphics.DrawString("GAME OVER", SystemFonts.DefaultFont, Brushes.Red,
-                    (formArea.Width / 2), formArea.Height / 2);
+                graphics.DrawString("GAME OVER", messageFont, Brushes.Red,
+                    (formArea.Width / 4), formArea.Height / 3);
             }
             
         }
@@ -108,6 +111,7 @@ namespace Lab_3___Invaders
         {
             if (playerShip.Alive)
             {
+                // Check to see if any shots are off screen, to be removed
                 List<Shot> deadPlayerShots = new List<Shot>();
                 foreach (Shot shot in playerShots)
                 {
@@ -142,6 +146,8 @@ namespace Lab_3___Invaders
             // if the frame is skipped invaders do not move
             if (currentGameFrame > framesSkipped)
             {
+                // Check to see if invaders are at edge of screen, 
+                // if so change direction
                 if (invaderDirection == Direction.Right)
                 {
                     var edgeInvaders =
@@ -205,17 +211,18 @@ namespace Lab_3___Invaders
 
             foreach (var invaderColumn in invaderColumns)
             {
-                var invaderRow =
+                {
+                    var invaderRow =
                     from invader in invaderColumn
                     orderby invader.Location.Y descending
                     select invader;
-                Invader shooter = invaderRow.First();
-                Point newShotLocation = new Point(shooter.Location.X + (shooter.Area.Width / 2),
-                shooter.Location.Y + shooter.Area.Height);
-                Shot newShot = new Shot(newShotLocation, Direction.Down,
+                    Invader shooter = invaderRow.First();
+                    Point newShotLocation = new Point
+                        (shooter.Location.X + (shooter.Area.Width / 2),
+                    shooter.Location.Y + shooter.Area.Height);
+
+                    Shot newShot = new Shot(newShotLocation, Direction.Down,
                     formArea);
-                if (invaderShots.Count < (wave + 1))
-                {
                     invaderShots.Add(newShot);
                 }
             }
@@ -235,6 +242,7 @@ namespace Lab_3___Invaders
                 {
                     deadInvaderShots.Add(shot);
                     livesLeft--;
+                    playerShip.Alive = false;
                     if (livesLeft == 0)
                         GameOver(this, null);
                     // worth checking for gameOver state here too?
