@@ -1,8 +1,0 @@
-D:\Documents\Visual Studio 2010\Projects\Lab 3 - Invaders\Lab 3 - Invaders\obj\x86\Debug\Lab_3___Invaders.Form1.resources
-D:\Documents\Visual Studio 2010\Projects\Lab 3 - Invaders\Lab 3 - Invaders\obj\x86\Debug\Lab_3___Invaders.Properties.Resources.resources
-D:\Documents\Visual Studio 2010\Projects\Lab 3 - Invaders\Lab 3 - Invaders\obj\x86\Debug\Lab 3 - Invaders.csproj.GenerateResource.Cache
-D:\Documents\Visual Studio 2010\Projects\Lab 3 - Invaders\Lab 3 - Invaders\bin\Debug\Lab 3 - Invaders.exe
-D:\Documents\Visual Studio 2010\Projects\Lab 3 - Invaders\Lab 3 - Invaders\bin\Debug\Lab 3 - Invaders.pdb
-D:\Documents\Visual Studio 2010\Projects\Lab 3 - Invaders\Lab 3 - Invaders\obj\x86\Debug\Lab 3 - Invaders.exe
-D:\Documents\Visual Studio 2010\Projects\Lab 3 - Invaders\Lab 3 - Invaders\obj\x86\Debug\Lab 3 - Invaders.pdb
-D:\Documents\Visual Studio 2010\Projects\Lab 3 - Invaders\Lab 3 - Invaders\obj\x86\Debug\Lab 3 - Invaders.csprojResolveAssemblyReference.cache
