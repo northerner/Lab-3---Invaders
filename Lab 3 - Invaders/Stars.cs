@@ -40,6 +40,7 @@ namespace Lab_3___Invaders
 
         public void Twinkle(Random random)
         {
+            // Remove 4 stars and randomly place 4 new ones
             stars.RemoveRange(0, 4);
             for (int i = 0; i < 4; i++)
                 addStar(random);

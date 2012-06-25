@@ -54,8 +54,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="Invader.cs" />
+    <Compile Include="PlayerShip.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShipType.cs" />
+    <Compile Include="Shot.cs" />
     <Compile Include="Star.cs" />
     <Compile Include="Stars.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -69,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,6 +84,69 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bug1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bug2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bug3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bug4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flyingsaucer1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flyingsaucer2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flyingsaucer3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flyingsaucer4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\satellite1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\satellite2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\satellite3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\satellite4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceship1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceship2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceship3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceship4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

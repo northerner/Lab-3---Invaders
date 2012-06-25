@@ -35,20 +35,18 @@
             // 
             // animationTimer
             // 
-            this.animationTimer.Enabled = true;
-            this.animationTimer.Interval = 33;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
             // gameTimer
             // 
-            this.gameTimer.Interval = 10;
-            //this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            this.gameTimer.Interval = 50;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(794, 572);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

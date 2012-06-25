@@ -11,14 +11,15 @@ namespace Lab_3___Invaders
 {
     public partial class Form1 : Form
     {
-        public int Frame;
+        public int Frame = 0;
+        // The form keeps a reference to a single Game object
         private Game game;
         public Rectangle FormArea { get { return this.ClientRectangle; } }
         Random random = new Random();
 
         List<Keys> keysPressed = new List<Keys>();
 
-        public bool gameOver;
+        private bool gameOver;
 
         public Form1()
         {
@@ -26,12 +27,13 @@ namespace Lab_3___Invaders
             Frame = 0;
             game = new Game(random, FormArea);
             gameOver = false;
-            game.GameOver +=new EventHandler(game_GameOver);
+            game.GameOver += new EventHandler(game_GameOver);
+            animationTimer.Start();
         }
 
         private void animationTimer_Tick(object sender, EventArgs e)
         {
-            if (Frame != 6)
+            if (Frame < 3)
                 Frame++;
             else
                 Frame = 0;
@@ -42,23 +44,24 @@ namespace Lab_3___Invaders
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
-            //graphics.FillRectangle(Brushes.Black, this.ClientRectangle);
-            game.Draw(graphics, Frame);
-            
+            game.Draw(graphics, Frame, gameOver);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Q)
                 Application.Exit();
-            if (gameOver)
-                if (e.KeyCode == Keys.S)
+            if (e.KeyCode == Keys.S)
                 {
                     // code to reset the game
+                    gameOver = false;
+                    game = new Game(random, FormArea);
+                    game.GameOver += new EventHandler(game_GameOver);
+                    gameTimer.Start();
                     return;
                 }
-            //if (e.KeyCode == Keys.Space)
-            //    game.FireShot();
+            if (e.KeyCode == Keys.Space)
+                game.FireShot();
             if (keysPressed.Contains(e.KeyCode))
                 keysPressed.Remove(e.KeyCode);
             keysPressed.Add(e.KeyCode);
@@ -71,23 +74,23 @@ namespace Lab_3___Invaders
                 keysPressed.Remove(e.KeyCode);
         }
 
-        //private void gameTimer_Tick(object sender, EventArgs e)
-        //{
-        //    game.Go();
-        //    foreach (Keys key in keysPressed)
-        //    {
-        //        if (key == Keys.Left)
-        //        {
-        //            game.MovePlayer(Direction.Left);
-        //            return;
-        //        }
-        //        else if (key == Keys.Right)
-        //        {
-        //            game.MovePlayer(Direction.Right);
-        //            return;
-        //        }
-        //    }
-        //}
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            game.Go();
+            foreach (Keys key in keysPressed)
+            {
+                if (key == Keys.Left)
+                {
+                    game.MovePlayer(Direction.Left, gameOver);
+                    return;
+                }
+                else if (key == Keys.Right)
+                {
+                    game.MovePlayer(Direction.Right, gameOver);
+                    return;
+                }
+            }
+        }
 
         private void game_GameOver(object sender, EventArgs e)
         {
