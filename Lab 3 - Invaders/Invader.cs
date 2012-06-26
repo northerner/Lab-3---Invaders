@@ -10,7 +10,7 @@ namespace Lab_3___Invaders
     class Invader
     {
         private const int horizontalInterval = 10;
-        private const int verticalInterval = 40;
+        private const int verticalInterval = 30;
 
         private Bitmap image;
         private Bitmap[] imageArray;

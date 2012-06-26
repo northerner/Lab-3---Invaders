@@ -52,13 +52,13 @@ namespace Lab_3___Invaders
                 if (direction == Direction.Left)
                 {
                     Point newLocation = new Point((Location.X - horizontalInterval), Location.Y);
-                    if ((newLocation.X < (boundaries.Width - 50)) && (newLocation.X > 0))
+                    if ((newLocation.X < (boundaries.Width - 100)) && (newLocation.X > 50))
                         Location = newLocation;
                 }
                 else if (direction == Direction.Right)
                 {
                     Point newLocation = new Point((Location.X + horizontalInterval), Location.Y);
-                    if ((newLocation.X < (boundaries.Width - 50)) && (newLocation.X > 0))
+                    if ((newLocation.X < (boundaries.Width - 100)) && (newLocation.X > 50))
                         Location = newLocation;
                 }
             }

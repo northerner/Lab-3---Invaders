@@ -9,9 +9,9 @@ namespace Lab_3___Invaders
 {
     class Shot
     {
-        private const int moveInterval = 20;
-        private const int width = 5;
-        private const int height = 15;
+        private const int moveInterval = 15;
+        private const int width = 3;
+        private const int height = 10;
 
         public Point Location { get; private set; }
 

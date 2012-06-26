@@ -15,7 +15,7 @@ namespace Lab_3___Invaders
         private Random random;
 
         private int score = 0;
-        private int livesLeft = 3;
+        private int livesLeft = 5;
         private int wave = 0;
         private int framesSkipped = 6;
         private int currentGameFrame = 1;
@@ -187,10 +187,21 @@ namespace Lab_3___Invaders
                     }
                 }
 
+                // Check to see if invaders have made it to the bottom
+                var endInvaders =
+                        from invader in invaders
+                        where invader.Location.Y > playerShip.Location.Y
+                        select invader;
+                if (endInvaders.Count() > 0)
+                {
+                    GameOver(this, null);
+                }
+
                 foreach (Invader invader in invaders)
                 {
                     invader.Move(invaderDirection);
                 }
+
             }
             currentGameFrame++;
             if (currentGameFrame > 6)
@@ -282,9 +293,6 @@ namespace Lab_3___Invaders
             }
             else
                 framesSkipped = 0;
-
-            // Single DEBUG invader
-            //invaders.Add(new Invader(ShipType.Bug, (new Point(50, 50)), 10));
 
             int currentInvaderYSpace = 0;
             for (int x = 0; x < 5; x++)
