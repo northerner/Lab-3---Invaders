@@ -12,5 +12,8 @@ namespace Lab_3___Invaders
         Satellite,
         Spaceship,
         Star,
+        Bomber,
+        Dropper,
+        Player
     }
 }
